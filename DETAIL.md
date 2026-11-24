@@ -1,11 +1,22 @@
-# Moonix
+# moonix
 
-Search Moonix recordings, read summaries and transcripts, and view your tasks in DeepSeek conversations. Access is read-only.
+Connect moonix to sync recordings, transcripts and summaries from the moonix App, view personal to-dos, and quickly revisit meeting highlights and key information.
 
-Version 0.1.0-alpha.2 defaults to access-token authentication for embedded DSH 0.2.2-rc.5. Copy an access token from the Moonix App and let the client store it as the user-level credential MOONIX_TOKEN. Do not save it to a project or echo it. Missing credentials may show waiting-credentials.
+## Revisit important meetings
 
-Verify actual authentication, MCP initialization, tool discovery and a minimal read-only account query before claiming success. This mode is not OAuth.
+Find your meeting records, read summaries and transcripts, and bring the key points and conclusions together.
 
-Newer hosts with native MCP accounts can explicitly select dsh-moonix/oauth and authorize from Plugins → Moonix. The user completes login and consent.
+## Stay on top of your to-dos
 
-This alpha still requires real DeepSeek connection verification.
+View your personal moonix to-dos, find incomplete items, and ask AI to organize them by priority.
+
+## Try asking
+
+- Summarize my meetings recorded in moonix this week and list the key conclusions.
+- Show my incomplete to-dos in moonix, organized by priority.
+
+## Get started
+
+Connect your moonix account to begin. This compatibility edition uses an access token from the moonix App; follow the prompts in DeepSeek to connect.
+
+The plugin provides read-only access to your recordings and to-dos. It does not create, update or delete moonix content.

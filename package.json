@@ -1,7 +1,7 @@
 {
   "name": "dsh-moonix",
-  "version": "0.1.0-alpha.2",
-  "description": "Moonix connector for DeepSeek Harness 0.2.2-rc.5: read-only recordings, transcripts and tasks using access-token authentication.",
+  "version": "0.1.0-alpha.3",
+  "description": "Connect moonix to sync recordings, transcripts and summaries from the moonix App, view personal to-dos, and quickly revisit meeting highlights and key information.",
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -10,18 +10,24 @@
     "./oauth": "./oauth.js",
     "./package.json": "./package.json",
     "./cordis.patch.yml": "./cordis.patch.yml",
-    "./locale/en.json": "./locale.en.json",
-    "./locale/zh.json": "./locale.zh.json"
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.webp",
+    "./token/locale/*.json": "./locale/*.json",
+    "./token/icon": "./icon.webp",
+    "./oauth/locale/*.json": "./locale/*.json",
+    "./oauth/icon": "./icon.webp"
   },
   "files": [
     "index.js",
     "token.js",
     "oauth.js",
     "register.js",
-    "locale.*.json",
+    "locale",
+    "icon.webp",
     "DETAIL*.md",
     "cordis.patch.yml",
     "README.md",
+    "DEVELOPMENT.md",
     "LICENSE"
   ],
   "engines": {
@@ -36,9 +42,12 @@
     "oauth",
     "recordings"
   ],
-  "author": "Moonix",
+  "author": {
+    "name": "moonix",
+    "url": "https://moonix.cn"
+  },
   "license": "MIT",
-  "homepage": "https://github.com/IceyOrange/dsh-moonix#readme",
+  "homepage": "https://moonix.cn",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/IceyOrange/dsh-moonix.git"
@@ -58,5 +67,6 @@
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
-  }
+  },
+  "icon": "./icon.webp"
 }
