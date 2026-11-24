@@ -31,7 +31,7 @@ const SERVER = 'moonix'
 const ENDPOINT = 'https://api.moonix.cn/mcp'
 
 export function registerMoonix(ctx, authentication) {
-  if (authentication !== 'oauth' && authentication !== 'token') {
+  if (!['oauth', 'token', 'browser'].includes(authentication)) {
     throw new Error('Unsupported moonix authentication mode')
   }
 
@@ -47,7 +47,9 @@ export function registerMoonix(ctx, authentication) {
     toolCallTimeoutMs: 60000,
   })
 
-  const connectionHelp = authentication === 'oauth'
+  const connectionHelp = authentication === 'browser'
+    ? 'This entry uses browser OAuth. On first use call moonix_connect or moonix_connection_status. Always show authorizationUrl as a clickable link, even when browserOpened is true. Tell the user the domain is api.moonix.cn, the client is moonix for DeepSeek Harness, and the requested scope is mcp. The user must complete account login, verification codes and final consent themselves. Never request codes or callback URLs. After they finish, call moonix_connection_status. Only when verified is true, perform a minimal actual read-only account tool call and describe the available Moonix capabilities. Do not claim connection success from a saved grant alone. On failure or expiry offer moonix_connect to create a fresh attempt. Never ask for a manual access token by default.'
+    : authentication === 'oauth'
     ? 'If no moonix tools are available, ask the user to open Plugins → moonix and connect their account. The user completes login and authorization in their browser.'
     : 'This compatibility entry uses access-token authentication, not OAuth, and has no browser sign-in button. '
       + 'If MOONIX_TOKEN is missing, explain that this entry does not use native OAuth, ask the user to copy an access token from the moonix App, and help save it through the host credentials provider as MOONIX_TOKEN. '

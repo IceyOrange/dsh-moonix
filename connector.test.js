@@ -1,7 +1,9 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { apply as defaultApply, inject as defaultInject } from './index.js'
+import { inject as defaultInject } from './index.js'
+import { registerMoonix } from './register.js'
+const defaultApply = ctx => registerMoonix(ctx, 'browser')
 import { apply as tokenApply } from './token.js'
 import { apply as oauthApply } from './oauth.js'
 
@@ -58,8 +60,8 @@ test('default entry never touches new account APIs, even when they exist', () =>
   h.ctx.inject = () => { throw new Error('Unexpected account registration') }
   defaultApply(h.ctx)
   assert.equal(h.accounts.length, 0)
-  assert.match(h.prompts[0].text, /access-token authentication, not OAuth/)
-  assert.match(h.prompts[0].text, /user-level store/)
+  assert.match(h.prompts[0].text, /This entry uses browser OAuth/)
+  assert.match(h.prompts[0].text, /Never ask for a manual access token by default/)
 })
 
 test('explicit token alias keeps the same compatibility configuration', () => {
@@ -102,4 +104,25 @@ test('authentication modes cannot be loaded simultaneously under the same name',
   assert.throws(() => oauthApply(h.ctx), /already registered/)
   assert.equal(h.entries.get('moonix'), entry)
   assert.equal(h.accounts.length, 0)
+})
+
+test('actual default plugin registers browser tools and cleans up its OAuth owner', async t => {
+  const { apply } = await import('./index.js')
+  const { BrowserOAuth } = await import('./browser-oauth.js')
+  let initialized = false, disposed = false
+  t.mock.method(BrowserOAuth.prototype, 'initialize', async () => { initialized = true })
+  t.mock.method(BrowserOAuth.prototype, 'dispose', () => { disposed = true })
+  const h = harness(), definitions = [], cleanup = []
+  h.ctx.effect = fn => { cleanup.push(fn()) }
+  h.ctx.tools = { register: definition => definitions.push(definition) }
+  await apply(h.ctx)
+  assert.equal(initialized, true)
+  assert.deepEqual(definitions.map(d => d.name), ['moonix_connect', 'moonix_connection_status'])
+  for (const definition of definitions) {
+    assert.equal(definition.parameters.type, 'object')
+    assert.deepEqual(definition.parameters.properties, {})
+    assert.equal(definition.output.schema.additionalProperties, true)
+  }
+  cleanup[0]()
+  assert.equal(disposed, true)
 })

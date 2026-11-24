@@ -1,6 +1,6 @@
 {
   "name": "dsh-moonix",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "description": "Connect moonix to sync recordings, transcripts and summaries from the moonix App, view personal to-dos, and quickly revisit meeting highlights and key information.",
   "type": "module",
   "main": "index.js",
@@ -28,7 +28,8 @@
     "cordis.patch.yml",
     "README.md",
     "DEVELOPMENT.md",
-    "LICENSE"
+    "LICENSE",
+    "browser-oauth.js"
   ],
   "engines": {
     "node": ">=24.9.0",

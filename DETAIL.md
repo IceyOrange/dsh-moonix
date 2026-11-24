@@ -17,6 +17,6 @@ View your personal moonix to-dos, find incomplete items, and ask AI to organize 
 
 ## Get started
 
-Connect your moonix account to begin. This compatibility edition uses an access token from the moonix App; follow the prompts in DeepSeek to connect.
+Connect your moonix account to begin. On first use, a browser opens for login and consent. If it does not open, use the authorization link provided in DeepSeek. Return to the conversation after consent to verify the connection and see available capabilities.
 
 The plugin provides read-only access to your recordings and to-dos. It does not create, update or delete moonix content.
