@@ -1,0 +1,60 @@
+{
+  "name": "dsh-moonix",
+  "version": "0.1.0-alpha.1",
+  "description": "Moonix connector for DeepSeek Harness: search recordings, read transcripts and view your tasks with OAuth.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./token": "./token.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/en.json": "./locale.en.json",
+    "./locale/zh.json": "./locale.zh.json"
+  },
+  "files": [
+    "index.js",
+    "token.js",
+    "register.js",
+    "locale.*.json",
+    "DETAIL*.md",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22",
+    "dsh": ">=0.2.3-alpha.2 <0.3.0"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "moonix",
+    "mcp",
+    "oauth",
+    "recordings"
+  ],
+  "author": "Moonix",
+  "license": "MIT",
+  "homepage": "https://github.com/IceyOrange/dsh-moonix#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IceyOrange/dsh-moonix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IceyOrange/dsh-moonix/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "alpha"
+  },
+  "scripts": {
+    "test": "node --test",
+    "prepublishOnly": "npm test"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
