@@ -43,14 +43,18 @@ export function registerMoonix(ctx, authentication) {
     ...(authentication === 'oauth'
       ? { oauth: { credentialKey: 'mcp-client/moonix', scope: 'mcp' } }
       : { headers: { Authorization: 'Bearer ${credential:MOONIX_TOKEN}' } }),
-    toolLoading: 'eager',
     startupTimeoutMs: 30000,
     toolCallTimeoutMs: 60000,
   })
 
   const connectionHelp = authentication === 'oauth'
     ? 'If no Moonix tools are available, ask the user to open Plugins → Moonix and connect their account. The user completes login and authorization in their browser.'
-    : 'If no Moonix tools are available, ask the user to check the MOONIX_TOKEN credential and the server connection status. This mode uses access-token authentication, not OAuth.'
+    : 'This compatibility entry uses access-token authentication, not OAuth, and has no browser sign-in button. '
+      + 'If MOONIX_TOKEN is missing, explain that this entry does not use native OAuth, ask the user to copy an access token from the Moonix App, and help save it through the host credentials provider as MOONIX_TOKEN. '
+      + 'Use the user-level store, preserve other credentials, never echo the token or store it in project files, and do not start a custom OAuth flow. '
+      + 'Check the manager connection status and actual discovered tools, then run only a minimal read-only account query before reporting success. '
+      + 'Report authentication as access-token authentication and redact the header as Authorization: Bearer ****. '
+      + 'Configuration or token presence alone is not proof that Moonix accepted the token; report 401/403 or missing credentials accurately.'
 
   ctx.systemPrompt.section({
     name: SERVER,

@@ -1,12 +1,13 @@
 {
   "name": "dsh-moonix",
-  "version": "0.1.0-alpha.1",
-  "description": "Moonix connector for DeepSeek Harness: search recordings, read transcripts and view your tasks with OAuth.",
+  "version": "0.1.0-alpha.2",
+  "description": "Moonix connector for DeepSeek Harness 0.2.2-rc.5: read-only recordings, transcripts and tasks using access-token authentication.",
   "type": "module",
   "main": "index.js",
   "exports": {
     ".": "./index.js",
     "./token": "./token.js",
+    "./oauth": "./oauth.js",
     "./package.json": "./package.json",
     "./cordis.patch.yml": "./cordis.patch.yml",
     "./locale/en.json": "./locale.en.json",
@@ -15,6 +16,7 @@
   "files": [
     "index.js",
     "token.js",
+    "oauth.js",
     "register.js",
     "locale.*.json",
     "DETAIL*.md",
@@ -23,8 +25,8 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=22",
-    "dsh": ">=0.2.3-alpha.2 <0.3.0"
+    "node": ">=24.9.0",
+    "dsh": ">=0.2.2-rc.5 <0.3.0"
   },
   "keywords": [
     "dsh-plugin",

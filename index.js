@@ -3,7 +3,7 @@ import { registerMoonix } from './register.js'
 export const name = 'moonix'
 export const inject = ['mcpManager', 'systemPrompt', 'credentials']
 
-/** Register the server and native Plugins-page OAuth account for this plugin's lifetime. */
+/** DSH 0.2.2-rc.5 entry: use the host credential provider without newer OAuth APIs. */
 export function apply(ctx) {
-  registerMoonix(ctx, 'oauth')
+  registerMoonix(ctx, 'token')
 }

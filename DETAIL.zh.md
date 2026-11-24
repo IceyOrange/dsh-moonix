@@ -1,23 +1,17 @@
 # Moonix
 
-将 Moonix 的个人录音记忆带入 DeepSeek Harness 对话。
+在 DeepSeek 对话中检索录音记录、阅读摘要和逐字稿、查询「我的待办」。只读访问，不创建、修改或删除 Moonix 内容。
 
-- 按关键词检索录音记录，或按时间和场景浏览。
-- 阅读录音摘要、整理结果和逐字稿。
-- 查询 Moonix「我的待办」。
+## DeepSeek 内置 Harness 0.2.2-rc.5
 
-只读访问，不创建、修改或删除 Moonix 内容。
+0.1.0-alpha.2 默认使用访问令牌认证，不依赖新版原生 OAuth 账户接口。
 
-## 连接账号
+请从 Moonix App 复制访问令牌，让当前客户端通过安全凭据能力保存为用户级 MOONIX_TOKEN。不要写进项目，不回显。缺少令牌时连接可能显示 waiting-credentials。
 
-在支持本插件的 DeepSeek Harness Web / Desktop 中安装并启用后，打开「插件 → Moonix」，点击「连接 Moonix」。在 api.moonix.cn 的授权页亲自完成登录及授权，再返回插件页查看状态。请求权限为 mcp；实际授权范围以页面展示为准。OAuth 注册、PKCE、回调和凭据保存由 Harness 原生组件处理。
+配置和令牌保存不代表验证成功。应继续确认认证被接受、MCP 初始化和工具发现成功，再执行一次最小只读用户信息查询。这不是 OAuth 授权成功。
 
-如果授权页面没有自动打开，使用账户区域提供的授权页按钮。不要手工拼接 OAuth 链接。
+## 新版 Harness
 
-## 示例
+仅在运行时提供原生 MCP 账户服务时，可以选用 dsh-moonix/oauth 入口，再从「插件 → Moonix」发起浏览器授权；用户本人完成手机号、验证码和最终确认。
 
-- 帮我找上周提到产品发布的录音。
-- 总结我指定的这条会议记录。
-- 看看 Moonix 中有哪些未完成待办。
-
-此版本为 alpha，尚待在真实 Harness 环境完成 OAuth 端到端验证。
+此版本仍为 alpha；真实 DeepSeek 连接验证待完成。

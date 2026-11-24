@@ -1,0 +1,18 @@
+{
+  "runtime": "0.2.2-rc.5",
+  "commit": "9c2670d3bce5275e0d1610272958121af87787bb",
+  "source": "https://github.com/deepseek-ai/deepseek-harness/blob/9c2670d3bce5275e0d1610272958121af87787bb/packages/mcp/mcp-manager/src/index.ts",
+  "registrationFields": [
+    "transport",
+    "command",
+    "args",
+    "env",
+    "cwd",
+    "url",
+    "headers",
+    "toolCallTimeoutMs",
+    "startupTimeoutMs",
+    "closeTimeoutMs",
+    "reconnect"
+  ]
+}

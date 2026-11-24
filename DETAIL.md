@@ -1,17 +1,11 @@
 # Moonix
 
-Bring your Moonix recordings into DeepSeek Harness conversations.
+Search Moonix recordings, read summaries and transcripts, and view your tasks in DeepSeek conversations. Access is read-only.
 
-- Search recordings by keyword or browse by date and recording scene.
-- Read summaries, structured notes and transcripts.
-- View your Moonix tasks.
+Version 0.1.0-alpha.2 defaults to access-token authentication for embedded DSH 0.2.2-rc.5. Copy an access token from the Moonix App and let the client store it as the user-level credential MOONIX_TOKEN. Do not save it to a project or echo it. Missing credentials may show waiting-credentials.
 
-Access is read-only. This connector cannot create, update or delete Moonix content.
+Verify actual authentication, MCP initialization, tool discovery and a minimal read-only account query before claiming success. This mode is not OAuth.
 
-## Connect
+Newer hosts with native MCP accounts can explicitly select dsh-moonix/oauth and authorize from Plugins → Moonix. The user completes login and consent.
 
-Install and enable the plugin in a supported Harness Web / Desktop version. Open Plugins → Moonix → Connect Moonix. Complete login and consent yourself on api.moonix.cn, then return to check the connection. The requested OAuth scope is mcp; inspect the actual consent page. Harness handles registration, PKCE, callbacks and credential storage.
-
-If the page does not open automatically, use the authorization-page button in the account section. Do not construct OAuth URLs manually.
-
-This alpha release still requires end-to-end OAuth validation in a real Harness environment.
+This alpha still requires real DeepSeek connection verification.
